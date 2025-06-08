@@ -55,7 +55,7 @@
 <ul>
   <li><strong>Name:</strong> Kripal Singh</li>
   <li><strong>Email:</strong>Kripalsingh.work@gmail.com</li>
-  <li><strong>GitHub:</strong> <a href="https://github.com/CODEMASTERSTACK">Kripal Singh</a></li>
+  <li><strong>GitHub:</strong> <a href="https://github.com/CODEMASTERSTACK">CODEMASTERSTACK</a></li>
 </ul>
 
 <hr>
