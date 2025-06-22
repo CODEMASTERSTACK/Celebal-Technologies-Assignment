@@ -34,7 +34,7 @@
 
 <ol>
   <li>Clone the repository:
-    <pre><code>git clone https://github.com/yourusername/celebal-technologies-assignment.git</code></pre>
+    <pre><code>git clone https://github.com/CODEMASTERSTACK/celebal-technologies-assignment.git</code></pre>
   </li>
   <li>Navigate to the desired week and task.</li>
   <li>Open and follow the instructions in the individual task folders.</li>
