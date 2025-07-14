@@ -1,0 +1,113 @@
+# Azure Data Factory with Self-hosted Integration Runtime (SHIR)
+
+## 📘 Project Overview
+
+This project demonstrates how to set up a **Self-hosted Integration Runtime (SHIR)** in **Azure Data Factory (ADF)** to extract data from an **on-premises SQL Server** and load it into an **Azure SQL Database**. This enables secure and scalable cloud-based analytics using hybrid data sources.
+
+---
+
+## 🧰 Prerequisites
+
+Before you begin, ensure the following:
+
+- Azure subscription (Student or Free Trial)
+- On-premises machine (physical or VM) running Windows
+- Local SQL Server (e.g., SQL Server Express) with test data
+- Internet access on the on-premises machine
+- Installed tools:
+  - Azure portal access
+  - ADF access via [https://adf.azure.com](https://adf.azure.com)
+  - SQL Server Management Studio (SSMS) for local DB access
+
+---
+
+## 🚀 Step-by-Step Implementation
+
+### 🔹 Step 1: Create Azure Data Factory
+
+1. Go to [portal.azure.com](https://portal.azure.com)
+2. Click **Create a resource**
+3. Search for **Data Factory** and click **Create**
+4. Fill the form:
+   - **Resource Group**: `ADF-SHIR-RG`
+   - **Region**: Choose the region
+   - **Data Factory Name**: `adf-shir-demo`
+   - **Version**: V2
+5. Click **Review + Create**, then **Create**
+
+📸 _Screenshot: Data Factory deployment_
+
+---
+
+### 🔹 Step 2: Install and Register SHIR
+
+1. Launch **ADF Studio** > Go to **Manage** (gear icon)
+2. Under **Integration Runtimes**, click **+ New**
+3. Select **Self-hosted**, then click **Continue**
+4. Choose **Express setup** or **Manual setup**
+5. Download and run the **SHIR Installer** on your on-prem machine
+6. Paste the **authentication key** from ADF to register
+
+📸 _Screenshot: SHIR setup and Online status in ADF_
+
+---
+
+### 🔹 Step 3: Create Linked Services
+
+#### 🔗 On-premises SQL Server Linked Service
+
+1. Go to **Manage > Linked Services > + New**
+2. Select **SQL Server**
+3. Set:
+   - **Integration Runtime**: Your SHIR
+   - **Server name**: `localhost\SQLEXPRESS` or IP
+   - **Authentication**: SQL or Windows
+   - Test connection and save
+
+#### 🔗 Azure SQL Database Linked Service
+
+1. Create a SQL Database in Azure (if not created already)
+2. Create another linked service:
+   - Type: **Azure SQL Database**
+   - Provide server, DB name, username/password
+   - Test connection and save
+
+📸 _Screenshot: Both Linked Services_
+
+---
+
+### 🔹 Step 4: Create a Copy Data Pipeline
+
+1. Go to **Author > + New pipeline**
+2. Name the pipeline: `CopyLocalToAzureSQL`
+3. Drag in a **Copy Data** activity
+4. Configure:
+
+#### Source:
+- Select **on-prem SQL Server** linked service
+- Choose your table or query
+- Define pagination if needed
+
+#### Sink:
+- Select **Azure SQL Database** linked service
+- Choose table or create new
+- Map fields if needed
+
+5. Debug the pipeline to test
+6. Click **Publish All** after testing
+
+📸 _Screenshot: Copy Activity and Pipeline Setup_
+
+---
+
+### 🔹 Step 5: Trigger the Pipeline
+
+1. Add a **Trigger Now** or **New Trigger** (schedule)
+2. Monitor the pipeline under **Monitor** tab
+
+📸 _Screenshot: Successful pipeline run_
+
+---
+
+## 📂 Folder Contents (If in ZIP/GitHub)
+
