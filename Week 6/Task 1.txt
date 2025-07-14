@@ -1,17 +1,17 @@
-# Azure Data Factory with Self-hosted Integration Runtime (SHIR)
+#Azure Data Factory with Self-hosted Integration Runtime (SHIR)
 
-## 📘 Project Overview
+## Project Overview
 
 This project demonstrates how to set up a **Self-hosted Integration Runtime (SHIR)** in **Azure Data Factory (ADF)** to extract data from an **on-premises SQL Server** and load it into an **Azure SQL Database**. This enables secure and scalable cloud-based analytics using hybrid data sources.
 
 ---
 
-## 🧰 Prerequisites
+##Prerequisites
 
-Before you begin, ensure the following:
+These are the some steps i ensure i should check first:
 
-- Azure subscription (Student or Free Trial)
-- On-premises machine (physical or VM) running Windows
+- Azure subscription (I had student trial)
+- On-premises machine running Windows
 - Local SQL Server (e.g., SQL Server Express) with test data
 - Internet access on the on-premises machine
 - Installed tools:
@@ -30,49 +30,42 @@ Before you begin, ensure the following:
 3. Search for **Data Factory** and click **Create**
 4. Fill the form:
    - **Resource Group**: `ADF-SHIR-RG`
-   - **Region**: Choose the region
+   - **Region**: East US
    - **Data Factory Name**: `adf-shir-demo`
    - **Version**: V2
 5. Click **Review + Create**, then **Create**
-
-📸 _Screenshot: Data Factory deployment_
 
 ---
 
 ### 🔹 Step 2: Install and Register SHIR
 
-1. Launch **ADF Studio** > Go to **Manage** (gear icon)
+1. Launch **ADF Studio** > Go to **Manage**
 2. Under **Integration Runtimes**, click **+ New**
 3. Select **Self-hosted**, then click **Continue**
 4. Choose **Express setup** or **Manual setup**
 5. Download and run the **SHIR Installer** on your on-prem machine
-6. Paste the **authentication key** from ADF to register
+6. Pasted the **authentication key** from ADF to register
 
-📸 _Screenshot: SHIR setup and Online status in ADF_
 
----
+### Step 3: Create Linked Services
 
-### 🔹 Step 3: Create Linked Services
-
-#### 🔗 On-premises SQL Server Linked Service
+#### 🔗On-premises SQL Server Linked Service
 
 1. Go to **Manage > Linked Services > + New**
 2. Select **SQL Server**
 3. Set:
    - **Integration Runtime**: Your SHIR
-   - **Server name**: `localhost\SQLEXPRESS` or IP
-   - **Authentication**: SQL or Windows
+   - **Server name**: `localhost\SQLEXPRESS` 
+   - **Authentication**: SQL 
    - Test connection and save
 
 #### 🔗 Azure SQL Database Linked Service
 
-1. Create a SQL Database in Azure (if not created already)
+1. Create a SQL Database in Azure
 2. Create another linked service:
    - Type: **Azure SQL Database**
-   - Provide server, DB name, username/password
+   - Provide server, DB name, mysql/mysql123
    - Test connection and save
-
-📸 _Screenshot: Both Linked Services_
 
 ---
 
@@ -96,8 +89,6 @@ Before you begin, ensure the following:
 5. Debug the pipeline to test
 6. Click **Publish All** after testing
 
-📸 _Screenshot: Copy Activity and Pipeline Setup_
-
 ---
 
 ### 🔹 Step 5: Trigger the Pipeline
@@ -105,9 +96,6 @@ Before you begin, ensure the following:
 1. Add a **Trigger Now** or **New Trigger** (schedule)
 2. Monitor the pipeline under **Monitor** tab
 
-📸 _Screenshot: Successful pipeline run_
-
 ---
 
-## 📂 Folder Contents (If in ZIP/GitHub)
 
